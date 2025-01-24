@@ -1,0 +1,3 @@
+MODULE faddr32bit_tb
+SUBMODULE faddr32bit
+INSTANCE UUT

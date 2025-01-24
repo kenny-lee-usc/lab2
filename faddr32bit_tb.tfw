@@ -1,0 +1,95 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2003 Xilinx, Inc.
+// All Right Reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 10.1
+//  \   \         Application : ISE
+//  /   /         Filename : faddr32bit_tb.tfw
+// /___/   /\     Timestamp : Fri Jan 24 00:43:04 2025
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: 
+//Design Name: faddr32bit_tb
+//Device: Xilinx
+//
+`timescale 1ns/1ps
+
+module faddr32bit_tb;
+    reg [31:0] A = 32'b00000000000000000000000000000000;
+    reg [31:0] B = 32'b00000000000000000000000000000000;
+    reg ce = 1'b0;
+    reg Cin = 1'b0;
+    reg clk = 1'b0;
+    reg rst = 1'b0;
+    wire CO;
+    wire [31:0] SUM;
+
+    parameter PERIOD = 200;
+    parameter real DUTY_CYCLE = 0.5;
+    parameter OFFSET = 100;
+
+    initial    // Clock process for clk
+    begin
+        #OFFSET;
+        forever
+        begin
+            clk = 1'b0;
+            #(PERIOD-(PERIOD*DUTY_CYCLE)) clk = 1'b1;
+            #(PERIOD*DUTY_CYCLE);
+        end
+    end
+
+    faddr32bit UUT (
+        .A(A),
+        .B(B),
+        .ce(ce),
+        .Cin(Cin),
+        .clk(clk),
+        .rst(rst),
+        .CO(CO),
+        .SUM(SUM));
+
+    initial begin
+        // -------------  Current Time:  100ns
+        #100;
+        rst = 1'b1;
+        // -------------------------------------
+        // -------------  Current Time:  185ns
+        #85;
+        ce = 1'b1;
+        rst = 1'b0;
+        // -------------------------------------
+        // -------------  Current Time:  385ns
+        #200;
+        ce = 1'b0;
+        // -------------------------------------
+        // -------------  Current Time:  585ns
+        #200;
+        Cin = 1'b1;
+        A = 32'b11111111111111111111111111111111;
+        // -------------------------------------
+        // -------------  Current Time:  785ns
+        #200;
+        ce = 1'b1;
+        Cin = 1'b0;
+        // -------------------------------------
+        // -------------  Current Time:  1385ns
+        #600;
+        B = 32'b00010000000000000000000000000000;
+        // -------------------------------------
+        // -------------  Current Time:  2385ns
+        #1000;
+        B = 32'b00000000000000000000000000000001;
+        // -------------------------------------
+        // -------------  Current Time:  2785ns
+        #400;
+        A = 32'b00000000000000001010101100110010;
+        // -------------------------------------
+    end
+
+endmodule
+

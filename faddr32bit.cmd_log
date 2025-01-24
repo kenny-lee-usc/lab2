@@ -1,0 +1,1 @@
+sch2verilog -intstyle ise -family spartan3a   -w "C:/Documents and Settings/student/lab2/faddr32bit.sch" faddr32bit.vf

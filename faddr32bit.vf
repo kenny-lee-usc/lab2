@@ -1,0 +1,77 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 10.1
+//  \   \         Application : sch2verilog
+//  /   /         Filename : faddr32bit.vf
+// /___/   /\     Timestamp : 01/24/2025 00:37:04
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: C:\Xilinx\10.1\ISE\bin\nt\unwrapped\sch2verilog.exe -intstyle ise -family spartan3a -w "C:/Documents and Settings/student/lab2/faddr32bit.sch" faddr32bit.vf
+//Design Name: faddr32bit
+//Device: spartan3a
+//Purpose:
+//    This verilog netlist is translated from an ECS schematic.It can be 
+//    synthesized and simulated, but it should not be modified. 
+//
+`timescale 1ns / 1ps
+
+module faddr32bit(A, 
+                  B, 
+                  ce, 
+                  Cin, 
+                  clk, 
+                  rst, 
+                  CO, 
+                  SUM);
+
+    input [31:0] A;
+    input [31:0] B;
+    input ce;
+    input Cin;
+    input clk;
+    input rst;
+   output CO;
+   output [31:0] SUM;
+   
+   wire XLXN_1;
+   wire XLXN_2;
+   wire XLXN_3;
+   
+   faddr8bit XLXI_1 (.A(A[7:0]), 
+                     .B(B[7:0]), 
+                     .ce(ce), 
+                     .Cin(Cin), 
+                     .clk(clk), 
+                     .rst(rst), 
+                     .CO(XLXN_1), 
+                     .SUM(SUM[7:0]));
+   faddr8bit XLXI_2 (.A(A[15:8]), 
+                     .B(B[15:8]), 
+                     .ce(ce), 
+                     .Cin(XLXN_1), 
+                     .clk(clk), 
+                     .rst(rst), 
+                     .CO(XLXN_2), 
+                     .SUM(SUM[15:8]));
+   faddr8bit XLXI_3 (.A(A[23:16]), 
+                     .B(B[23:16]), 
+                     .ce(ce), 
+                     .Cin(XLXN_2), 
+                     .clk(clk), 
+                     .rst(rst), 
+                     .CO(XLXN_3), 
+                     .SUM(SUM[23:16]));
+   faddr8bit XLXI_4 (.A(A[31:24]), 
+                     .B(B[31:24]), 
+                     .ce(ce), 
+                     .Cin(XLXN_3), 
+                     .clk(clk), 
+                     .rst(rst), 
+                     .CO(CO), 
+                     .SUM(SUM[31:24]));
+endmodule
