@@ -1,0 +1,3 @@
+MODULE faddr8bit_tb
+SUBMODULE faddr8bit
+INSTANCE UUT

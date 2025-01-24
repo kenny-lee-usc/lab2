@@ -1,0 +1,2 @@
+sch2verilog -intstyle ise -family spartan3a   -w "C:/Documents and Settings/student/lab2/faddr4bit.sch" faddr4bit.vf
+sch2verilog -intstyle ise -family spartan3a   -w "C:/Documents and Settings/student/lab2/faddr4bit.sch" faddr4bit.vf
