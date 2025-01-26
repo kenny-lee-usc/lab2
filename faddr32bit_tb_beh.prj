@@ -1,6 +1,0 @@
-verilog work "faddr1bit.vf"
-verilog work "faddr4bit.vf"
-verilog work "faddr8bit.vf"
-verilog work "faddr32bit.vf"
-verilog work "faddr32bit_tb.tfw"
-verilog work "C:/Xilinx/10.1/ISE/verilog/src/glbl.v"
